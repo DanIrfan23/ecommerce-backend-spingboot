@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "transactions")
 public class Transaction {
@@ -21,15 +23,18 @@ public class Transaction {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private Cart cart;
+    @Column(columnDefinition = "varchar(20) default 'pending'")
+    private String status;
 
     public Transaction(){
 
     }
 
-    public Transaction(int id, Address address, Cart cart){
+    public Transaction(int id, Address address, Cart cart, String status){
         this.id = id;
         this.address = address;
         this.cart = cart;
+        this.status = status;
     }
 
     public int getId() {
@@ -54,5 +59,13 @@ public class Transaction {
 
     public void setCart(Cart cart) {
         this.cart = cart;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
