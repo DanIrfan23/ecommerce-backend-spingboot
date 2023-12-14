@@ -15,26 +15,27 @@ public class Transaction {
     private int id;
     @JoinColumn(name = "address_id", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private Address address;
-    @JoinColumn(name = "cart_id", nullable = false)
-    @ManyToOne(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "cart_item_id", nullable = false)
+    @OneToOne(fetch = FetchType.LAZY)
     @JsonIgnore
-    private Cart cart;
+    private CartItem cartItem;
     @Column(columnDefinition = "varchar(20) default 'pending'")
     private String status;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
 
     public Transaction(){
 
     }
 
-    public Transaction(int id, Address address, Cart cart, String status){
+    public Transaction(int id, Address address, CartItem cartItem, String status, Date createdAt){
         this.id = id;
         this.address = address;
-        this.cart = cart;
+        this.cartItem = cartItem;
         this.status = status;
+        this.createdAt = createdAt;
     }
 
     public int getId() {
@@ -53,12 +54,12 @@ public class Transaction {
         this.address = address;
     }
 
-    public Cart getCart() {
-        return cart;
+    public CartItem getCartItem() {
+        return cartItem;
     }
 
-    public void setCart(Cart cart) {
-        this.cart = cart;
+    public void setCartItem(CartItem cartItem) {
+        this.cartItem = cartItem;
     }
 
     public String getStatus() {
@@ -67,5 +68,13 @@ public class Transaction {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 }
