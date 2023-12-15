@@ -29,8 +29,6 @@ public class Address {
     private String zip_code;
     @JoinColumn(name = "user_id")
     @ManyToOne(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
     private User user;
 
     public Address(){

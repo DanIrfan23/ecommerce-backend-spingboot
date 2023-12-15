@@ -17,10 +17,10 @@ public class Transaction {
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     private Address address;
-    @JoinColumn(name = "cart_item_id", nullable = false)
-    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
-    private CartItem cartItem;
+    private User user;
     @Column(columnDefinition = "varchar(20) default 'pending'")
     private String status;
     @Temporal(TemporalType.TIMESTAMP)
@@ -30,10 +30,10 @@ public class Transaction {
 
     }
 
-    public Transaction(int id, Address address, CartItem cartItem, String status, Date createdAt){
+    public Transaction(int id, Address address, User user, String status, Date createdAt){
         this.id = id;
         this.address = address;
-        this.cartItem = cartItem;
+        this.user = user;
         this.status = status;
         this.createdAt = createdAt;
     }
@@ -54,12 +54,12 @@ public class Transaction {
         this.address = address;
     }
 
-    public CartItem getCartItem() {
-        return cartItem;
+    public User getUser() {
+        return user;
     }
 
-    public void setCartItem(CartItem cartItem) {
-        this.cartItem = cartItem;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getStatus() {

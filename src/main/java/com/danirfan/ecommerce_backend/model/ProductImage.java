@@ -12,8 +12,6 @@ public class ProductImage {
     private String image;
     @JoinColumn(name = "product_id", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
     private Product product;
 
     public ProductImage(){

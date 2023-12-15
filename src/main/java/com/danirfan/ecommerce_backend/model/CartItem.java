@@ -13,18 +13,12 @@ public class CartItem {
     private int id;
     @JoinColumn(name = "cart_id", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
     private Cart cart;
     @JoinColumn(name = "product_id", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
     private Product product;
     @JoinColumn(name = "product_variation_id", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
     private ProductVariation productVariation;
     private int qty;
 

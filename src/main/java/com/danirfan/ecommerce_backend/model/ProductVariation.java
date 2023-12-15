@@ -23,8 +23,6 @@ public class ProductVariation {
     private int price;
     @JoinColumn(name = "product_id", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
     private Product product;
 
     public ProductVariation(int id, String name, String image, int qty, int price, Product product){

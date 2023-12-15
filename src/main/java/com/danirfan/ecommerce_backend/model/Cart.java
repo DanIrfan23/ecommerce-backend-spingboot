@@ -13,8 +13,6 @@ public class Cart {
     private int id;
     @JoinColumn(name = "user_id")
     @OneToOne(fetch = FetchType.LAZY)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
     private User user;
 
     public Cart(){

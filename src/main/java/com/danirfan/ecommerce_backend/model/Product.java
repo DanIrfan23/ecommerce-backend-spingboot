@@ -19,8 +19,6 @@ public class Product {
     private String thumbnail;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnore
     private Category category;
 
     public Product(int id, String name, String description, String thumbnail, Category category){
